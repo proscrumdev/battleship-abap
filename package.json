@@ -1,0 +1,16 @@
+{
+  "name": "battleship-abap",
+  "version": "1.0.0",
+  "description": "Battleship case study implemented in ABAP, runnable on Node.js via the abaplint transpiler (no SAP system required)",
+  "type": "module",
+  "scripts": {
+    "build": "abap_transpile",
+    "start": "npm run build && node start.mjs",
+    "test": "npm run build && node output/index.mjs"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@abaplint/runtime": "^2.13.30",
+    "@abaplint/transpiler-cli": "^2.13.30"
+  }
+}
