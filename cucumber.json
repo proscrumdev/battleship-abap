@@ -1,0 +1,6 @@
+{
+  "default": {
+    "import": ["GameController_ATDD/support/steps.mjs"],
+    "paths": ["GameController_ATDD/*.feature"]
+  }
+}
