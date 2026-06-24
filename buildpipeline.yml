@@ -28,7 +28,7 @@ steps:
   displayName: 'Lint ABAP (abaplint)'
 
 - script: |
-    node output/index.mjs
+    node run-abapunit.mjs
   displayName: 'run ABAP Unit tests'
 
 - script: |

@@ -7,9 +7,9 @@
     "build": "abap_transpile",
     "start": "npm run build && node start.mjs",
     "lint": "abaplint",
-    "abapunit": "npm run build && node output/index.mjs",
+    "abapunit": "npm run build && node run-abapunit.mjs",
     "cucumber": "npm run build && cucumber-js",
-    "test": "npm run build && node output/index.mjs && cucumber-js"
+    "test": "npm run build && node run-abapunit.mjs && cucumber-js"
   },
   "license": "ISC",
   "devDependencies": {

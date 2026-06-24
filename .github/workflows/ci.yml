@@ -21,7 +21,7 @@ jobs:
         run: npm run build
 
       - name: ABAP Unit tests
-        run: node output/index.mjs
+        run: node run-abapunit.mjs
 
       - name: Cucumber tests
         run: ./node_modules/.bin/cucumber-js --format junit:testresults_cucumber.xml
@@ -30,4 +30,4 @@ jobs:
         if: always()
         with:
           name: test-results
-          path: testresults_cucumber.xml
+          path: testresults_*.xml
