@@ -1,5 +1,4 @@
-"! Pure game logic, no I/O. Mirrors GameController/gameController.js.
-"! Also hosts the A..H letter mapping that letters.js provided.
+"! Pure game logic, no I/O. Also hosts the A..H column-letter mapping.
 CLASS zcl_game_controller DEFINITION PUBLIC CREATE PUBLIC.
 
   PUBLIC SECTION.
@@ -21,7 +20,7 @@ CLASS zcl_game_controller DEFINITION PUBLIC CREATE PUBLIC.
       IMPORTING ship          TYPE REF TO zcl_ship
       RETURNING VALUE(result) TYPE abap_bool.
 
-    "! Column letter for a 1-based index, e.g. 2 -> 'B'. Replaces letters.js.
+    "! Column letter for a 1-based index, e.g. 2 -> 'B'.
     CLASS-METHODS letter_from_index
       IMPORTING index         TYPE i
       RETURNING VALUE(letter) TYPE c.

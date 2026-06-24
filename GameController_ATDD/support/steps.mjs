@@ -1,10 +1,8 @@
 // Cucumber step definitions for isShipValid.feature.
 //
-// This is the ABAP counterpart of GameController_ATDD/support/steps.js in the
-// battleship-nodejs repository. The *.feature file is identical in both repos:
-// only the wiring differs. Here the steps drive the TRANSPILED ABAP classes
-// (zcl_ship, zcl_position, zcl_game_controller) on Node.js — exactly the same
-// logic you would call from ABAP Unit inside a SAP system.
+// The steps drive the transpiled ABAP classes (zcl_ship, zcl_position,
+// zcl_game_controller) — the same logic you would call from ABAP Unit inside a
+// SAP system.
 //
 // Run with:  npm run cucumber   (transpiles the ABAP first, then runs cucumber-js)
 

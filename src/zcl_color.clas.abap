@@ -1,5 +1,4 @@
 "! Wraps text in ANSI escape codes so it shows up coloured in a terminal.
-"! This is the ABAP counterpart of the Node.js "cli-color" dependency.
 "!
 "! Note: in a real SAP GUI you would colour list output with
 "! "WRITE ... COLOR n". On a plain console (where this game runs) colour
@@ -21,7 +20,7 @@ CLASS zcl_color DEFINITION PUBLIC CREATE PUBLIC.
                 code          TYPE i
       RETURNING VALUE(result) TYPE string.
 
-    " Convenience helpers, mirroring cli-color's cliColor.magenta( ... ) style
+    " Convenience helpers for the most common colours
     CLASS-METHODS magenta IMPORTING text TYPE string RETURNING VALUE(result) TYPE string.
     CLASS-METHODS red     IMPORTING text TYPE string RETURNING VALUE(result) TYPE string.
     CLASS-METHODS green   IMPORTING text TYPE string RETURNING VALUE(result) TYPE string.

@@ -1,7 +1,6 @@
-"! Orchestrates the game. Mirrors battleship.js.
+"! Orchestrates the game.
 "! Output goes to the console via WRITE; input is pulled from an injected
-"! zif_input (Node readline interactively, or a scripted double in tests).
-"! Telemetry from the Node.js original is intentionally omitted.
+"! zif_input (interactively from the console, or a scripted double in tests).
 CLASS zcl_battleship DEFINITION PUBLIC CREATE PUBLIC.
 
   PUBLIC SECTION.
@@ -12,7 +11,7 @@ CLASS zcl_battleship DEFINITION PUBLIC CREATE PUBLIC.
     METHODS start.
 
     "! Parses player input like "B4" into a position. Public so unit
-    "! tests can pin the behaviour. Mirrors Battleship.ParsePosition.
+    "! tests can pin the behaviour.
     METHODS parse_position
       IMPORTING input           TYPE string
       RETURNING VALUE(position) TYPE REF TO zcl_position.
@@ -38,8 +37,11 @@ ENDCLASS.
 CLASS zcl_battleship IMPLEMENTATION.
 
   METHOD constructor.
-    mo_input  = io_input.
-    mo_random = cl_abap_random_int=>create( seed = 42 min = 0 max = 7 ).
+    mo_input = io_input.
+    " Seed the generator from the current time so the computer's shots
+    " differ on every run.
+    GET TIME.
+    mo_random = cl_abap_random_int=>create( seed = CONV i( sy-uzeit ) min = 0 max = 7 ).
   ENDMETHOD.
 
   METHOD start.
@@ -146,14 +148,14 @@ CLASS zcl_battleship IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD get_random_position.
-    " Mirrors GetRandomPosition: a random column A..H and a random row.
+    " A random column A..H and a random row.
     DATA(letter) = zcl_game_controller=>letter_from_index( mo_random->get_next( ) + 1 ).
     DATA(number) = mo_random->get_next( ).
     position = NEW zcl_position( column = letter row = number ).
   ENDMETHOD.
 
   METHOD print_welcome.
-    " Mirrors the magenta welcome banner from battleship.js (cliColor.magenta).
+    " The welcome banner, printed in magenta.
     WRITE: / zcl_color=>magenta( '                                     |__' ),
            / zcl_color=>magenta( '                                     |\/' ),
            / zcl_color=>magenta( '                                     ---' ),

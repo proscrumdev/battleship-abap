@@ -30,8 +30,7 @@ rl.on("line", (line) => {
   }
 });
 
-// The original game loops forever (while(true)); EOF / Ctrl+C ends the process,
-// exactly like killing the Node.js original.
+// The game loops forever; EOF / Ctrl+C ends the process.
 rl.on("close", () => process.exit(0));
 
 const consoleInput = {

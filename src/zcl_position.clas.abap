@@ -1,5 +1,4 @@
 "! A single board coordinate, e.g. column 'B', row 4.
-"! Mirrors GameController/position.js.
 CLASS zcl_position DEFINITION PUBLIC CREATE PUBLIC.
 
   PUBLIC SECTION.
