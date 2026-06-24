@@ -1,0 +1,57 @@
+# Battleship ABAP
+# Transpiles the ABAP to JavaScript and runs lint, ABAP Unit and Cucumber tests.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '20.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+  displayName: 'npm install'
+
+- script: |
+    npm run build
+  displayName: 'Transpile ABAP to JavaScript'
+
+- script: |
+    npm run lint
+  displayName: 'Lint ABAP (abaplint)'
+
+- script: |
+    node output/index.mjs
+  displayName: 'run ABAP Unit tests'
+
+- script: |
+    ./node_modules/.bin/cucumber-js --format junit:testresults_cucumber.xml
+  displayName: 'run Cucumber tests'
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/testresult*.xml'
+    mergeTestResults: true
+    failTaskOnFailedTests: true
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.SourcesDirectory)'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
