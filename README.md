@@ -47,6 +47,13 @@ Execute Cucumber-js tests only
 npm run cucumber
 ```
 
+## Lint
+
+Check the ABAP sources with [abaplint](https://abaplint.org/):
+```bash
+npm run lint
+```
+
 ## Docker
 
 To run and test the project in a container, use these steps:
@@ -74,18 +81,19 @@ This separation (I/O behind an interface, pure logic in its own classes) is what
 
 ## Project structure
 
-| File | Role | Node.js counterpart |
-|------|------|---------------------|
-| [`src/zcl_position.clas.abap`](src/zcl_position.clas.abap) | A board coordinate | `GameController/position.js` |
-| [`src/zcl_ship.clas.abap`](src/zcl_ship.clas.abap) | A ship and its positions | `GameController/ship.js` |
-| [`src/zcl_game_controller.clas.abap`](src/zcl_game_controller.clas.abap) | Pure game logic + A–H letters | `gameController.js` + `letters.js` |
-| [`src/zcl_battleship.clas.abap`](src/zcl_battleship.clas.abap) | Game flow & console output | `battleship.js` |
-| [`src/zcl_color.clas.abap`](src/zcl_color.clas.abap) | ANSI colour helper | the `cli-color` dependency |
-| [`src/zif_input.intf.abap`](src/zif_input.intf.abap) | Input abstraction | the `readline` calls |
-| [`src/zcl_input_scripted.clas.abap`](src/zcl_input_scripted.clas.abap) | Test double for input | – |
-| [`src/zcl_game_controller.clas.testclasses.abap`](src/zcl_game_controller.clas.testclasses.abap) | ABAP Unit tests | the Mocha tests |
-| [`GameController_ATDD/isShipValid.feature`](GameController_ATDD/isShipValid.feature) | Gherkin acceptance spec | `GameController_ATDD/isShipValid.feature` |
-| [`GameController_ATDD/support/steps.mjs`](GameController_ATDD/support/steps.mjs) | Cucumber step definitions | `GameController_ATDD/support/steps.js` |
-| [`start.mjs`](start.mjs) | Node shim: keyboard ↔ `zif_input` | – |
+| File | Role |
+|------|------|
+| [`src/zcl_position.clas.abap`](src/zcl_position.clas.abap) | A board coordinate |
+| [`src/zcl_ship.clas.abap`](src/zcl_ship.clas.abap) | A ship and its positions |
+| [`src/zcl_game_controller.clas.abap`](src/zcl_game_controller.clas.abap) | Pure game logic + A–H letters |
+| [`src/zcl_battleship.clas.abap`](src/zcl_battleship.clas.abap) | Game flow & console output |
+| [`src/zcl_color.clas.abap`](src/zcl_color.clas.abap) | ANSI colour helper |
+| [`src/zif_input.intf.abap`](src/zif_input.intf.abap) | Input abstraction |
+| [`src/zcl_input_scripted.clas.abap`](src/zcl_input_scripted.clas.abap) | Test double for input |
+| [`src/zcl_game_controller.clas.testclasses.abap`](src/zcl_game_controller.clas.testclasses.abap) | ABAP Unit tests (game logic) |
+| [`src/zcl_battleship.clas.testclasses.abap`](src/zcl_battleship.clas.testclasses.abap) | ABAP Unit tests (parse_position) |
+| [`GameController_ATDD/isShipValid.feature`](GameController_ATDD/isShipValid.feature) | Gherkin acceptance spec |
+| [`GameController_ATDD/support/steps.mjs`](GameController_ATDD/support/steps.mjs) | Cucumber step definitions |
+| [`start.mjs`](start.mjs) | Node shim: keyboard ↔ `zif_input` |
 
 Have fun – and remember, the code is unfinished on purpose.

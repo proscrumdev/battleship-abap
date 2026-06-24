@@ -6,6 +6,7 @@ CLASS ltcl_game DEFINITION FINAL FOR TESTING
   PRIVATE SECTION.
     METHODS initialize_builds_five_ships FOR TESTING.
     METHODS hit_on_matching_position    FOR TESTING.
+    METHODS hit_with_full_fleet         FOR TESTING.
     METHODS miss_on_empty_water         FOR TESTING.
     METHODS ship_valid_when_full        FOR TESTING.
     METHODS scripted_input_replays      FOR TESTING.
@@ -39,6 +40,29 @@ CLASS ltcl_game IMPLEMENTATION.
     cl_abap_unit_assert=>assert_true(
       act = result
       msg = 'Shot on the ship position must be a hit' ).
+  ENDMETHOD.
+
+  METHOD hit_with_full_fleet.
+    " Place every ship of a full fleet (ship n in column n, rows 1..size)
+    " and fire at B3.
+    DATA(ships) = zcl_game_controller=>initialize_ships( ).
+    DATA(counter) = 1.
+    LOOP AT ships INTO DATA(ship).
+      DO ship->size TIMES.
+        ship->add_position( NEW zcl_position(
+          column = zcl_game_controller=>letter_from_index( counter )
+          row    = sy-index ) ).
+      ENDDO.
+      counter = counter + 1.
+    ENDLOOP.
+
+    DATA(result) = zcl_game_controller=>check_is_hit(
+      ships = ships
+      shot  = NEW zcl_position( column = 'B' row = 3 ) ).
+
+    cl_abap_unit_assert=>assert_true(
+      act = result
+      msg = 'B3 sits on the second ship and must be a hit' ).
   ENDMETHOD.
 
   METHOD miss_on_empty_water.

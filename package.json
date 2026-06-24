@@ -6,12 +6,14 @@
   "scripts": {
     "build": "abap_transpile",
     "start": "npm run build && node start.mjs",
+    "lint": "abaplint",
     "abapunit": "npm run build && node output/index.mjs",
     "cucumber": "npm run build && cucumber-js",
     "test": "npm run build && node output/index.mjs && cucumber-js"
   },
   "license": "ISC",
   "devDependencies": {
+    "@abaplint/cli": "^2.119.41",
     "@abaplint/runtime": "^2.13.30",
     "@abaplint/transpiler-cli": "^2.13.30",
     "@cucumber/cucumber": "^12.1.0"

@@ -1,0 +1,30 @@
+{
+  "global": {
+    "files": "/src/**/*.*"
+  },
+  "syntax": {
+    "version": "v755",
+    "errorNamespace": "^(Z|Y|LCL_|LIF_|LTCL_|LTD_|TY_)"
+  },
+  "rules": {
+    "check_syntax": true,
+    "parser_error": true,
+    "unknown_types": true,
+    "method_implemented_twice": true,
+    "begin_end_names": true,
+    "obsolete_statement": true,
+    "empty_statement": true,
+    "exporting": true,
+    "selection_screen_naming": false,
+    "contains_tab": true,
+    "space_before_colon": true,
+    "sequential_blank": {
+      "lines": 4
+    },
+    "line_length": {
+      "length": 120
+    },
+    "max_one_method_parameter_per_line": false,
+    "prefer_inline": false
+  }
+}
