@@ -7,11 +7,6 @@ course (www.scrum.org/apssd). **The code in this repository is unfinished by
 design** – and some of its bugs are intentional, to be discovered and discussed
 during the training.
 
-This is the ABAP counterpart of the
-[battleship-nodejs](https://github.com/proscrumdev/battleship-nodejs) repository.
-Participants can choose which technology stack they want to clone and work with –
-the game and the exercises are the same.
-
 ## No SAP system required
 
 You do **not** need a SAP system, SAP GUI or any Docker image to run this. The
@@ -98,19 +93,5 @@ talking point for the training.
 | [`src/zcl_game_controller.clas.testclasses.abap`](src/zcl_game_controller.clas.testclasses.abap) | ABAP Unit tests | the Mocha tests |
 | [`start.mjs`](start.mjs) | Node shim: keyboard ↔ `zif_input` | – |
 
-# Exercise hints
-
-A few ideas the trainer may build exercises around:
-
-* **Make the output colourful.** `ZCL_COLOR` already shows how it is done – the
-  welcome banner is printed in magenta (mirroring `cliColor.magenta` in the
-  Node.js version). Extend it: colour hits red/green, misses yellow, the ship
-  ASCII art, etc.
-* **Fix the intentional bugs.** For example the computer fires at rows `0–7`
-  instead of `1–8`, and coordinate parsing only reads a single digit (`B10`
-  becomes `B1`).
-* **Grow the test suite.** Add `FOR TESTING` methods in
-  `zcl_game_controller.clas.testclasses.abap`; they run automatically on the next
-  `npm test`.
 
 Have fun – and remember, the code is unfinished on purpose.
